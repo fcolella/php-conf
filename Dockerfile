@@ -39,11 +39,11 @@ RUN sed -i "s/;date.timezone =.*/date.timezone = UTC/" /etc/php5/fpm/php.ini && 
     sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php5/fpm/pool.d/www.conf
 
 ENV PROJECT_ROOT /var/www
-VOLUME ["/var/www", "/var/www/html"]
+VOLUME ["/var/www", "/var/www/storage", "/var/www/vendor", "/var/www/html"]
 WORKDIR ${PROJECT_ROOT}
 
-RUN chmod -f -R 777 ${PROJECT_ROOT}/storage
-RUN chmod -f -R 777 ${PROJECT_ROOT}/vendor
+RUN chmod -R 777 ${PROJECT_ROOT}/storage
+RUN chmod -R 777 ${PROJECT_ROOT}/vendor
 
 EXPOSE 9000
 
