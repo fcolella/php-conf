@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-MAINTAINER "Dylan Lindgren" <dylan.lindgren@gmail.com>
+MAINTAINER "Facundo Colella" <fcolella@garbarino.com.ar>
 
 # Install PHP-FPM and popular/laravel required extensions
 RUN apt-get update -y && \
@@ -38,12 +38,12 @@ RUN sed -i "s/;date.timezone =.*/date.timezone = UTC/" /etc/php5/fpm/php.ini && 
     sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php5/fpm/pool.d/www.conf && \
     sed -i '/^;env\[TEMP\] = .*/aenv[DB_PORT_3306_TCP_ADDR] = $DB_PORT_3306_TCP_ADDR' /etc/php5/fpm/pool.d/www.conf
 
-#RUN mkdir -p /data
-#VOLUME ["/data"]
-
 ENV PROJECT_ROOT /var/www
 VOLUME ["/var/www", "/var/www/html"]
-WORKDIR ${PROJECT_ROOT}/html
+WORKDIR ${PROJECT_ROOT}
+
+RUN chmod -R 777 ${PROJECT_ROOT}/storage
+RUN chmod -R 777 ${PROJECT_ROOT}/vendor
 
 EXPOSE 9000
 
