@@ -42,8 +42,8 @@ ENV PROJECT_ROOT /var/www
 VOLUME ["/var/www", "/var/www/html"]
 WORKDIR ${PROJECT_ROOT}
 
-#RUN chmod -R 777 ${PROJECT_ROOT}/storage
-#RUN chmod -R 777 ${PROJECT_ROOT}/vendor
+RUN chmod -f -R 777 ${PROJECT_ROOT}/storage
+RUN chmod -f -R 777 ${PROJECT_ROOT}/vendor
 
 EXPOSE 9000
 
