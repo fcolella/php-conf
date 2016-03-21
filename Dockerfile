@@ -45,8 +45,7 @@ WORKDIR ${PROJECT_ROOT}
 RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
 
-RUN chmod -R 777 /var/www/storage
-RUN chmod -R 777 /var/www/vendor
+RUN chmod -R 777 /var/www
 
 EXPOSE 9000
 
