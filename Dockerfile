@@ -42,6 +42,12 @@ ENV PROJECT_ROOT /var/www
 VOLUME ["/var/www", "/var/www/html"]
 WORKDIR ${PROJECT_ROOT}
 
+RUN usermod -u 1000 www-data
+RUN usermod -G staff www-data
+
+RUN chmod -R 777 var/www/storage
+RUN chmod -R 777 var/www/vendor
+
 EXPOSE 9000
 
 ENTRYPOINT ["/usr/sbin/php5-fpm", "-F"]
